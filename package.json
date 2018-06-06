@@ -8,6 +8,7 @@
     "dev": "webpack -d --watch",
     "build": "webpack -p",
     "test": "jest",
+    
     "testCoverage": "jest --coverage"
   },
   "repository": {
@@ -71,10 +72,6 @@
       "js",
       "vue"
     ],
-    "transform": {
-      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue-preprocessor",
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
-    },
     "collectCoverageFrom": ["public/js/src/**/*"]
   }
 }
