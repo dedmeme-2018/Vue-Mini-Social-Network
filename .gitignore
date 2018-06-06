@@ -8,3 +8,4 @@ package-lock.json
 public/styles/dist/styles.css.map
 public/tmp/
 public/js/dist/bundle.js
+config/firebase.js
