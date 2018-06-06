@@ -16,7 +16,6 @@
 
       <div class='c_n_bottom modal_bottom'>
         <a href='#' class='c_n_cancel sec_btn' @click.prevent='Back' >Back</a>
-        <a href='#' class='c_n_cancel sec_btn' @click.prevent='imgTest'>Test Image</a>
         <input type='submit' class='c_n_add pri_btn' value='Add Post' />
       </div>
 
