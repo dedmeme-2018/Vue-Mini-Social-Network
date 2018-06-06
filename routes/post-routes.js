@@ -26,13 +26,14 @@ app.post('/get-feeds', async (req, res) => {
 app.post('/create-post', async (req, res) => {
   let {
       session: { id, username },
-      body: { title, content }
+      body: { title, content, img_id }
     } = req,
     insert = {
       user: id,
       username,
       title,
       content,
+      img_id,
       post_created: new Date().getTime(),
     },
     { insertId } = await db.query('INSERT INTO posts SET ?', insert)

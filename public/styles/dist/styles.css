@@ -812,14 +812,20 @@ color: #fff;
 
 .create_note {
   width: 380px; }
-  .create_note input[type='text'], .create_note textarea {
+  .create_note input[type='text'], .create_note textarea, .create_note input[type='file'] {
     padding: 7px !important;
     width: 94%;
     font-size: 14px; }
-  .create_note input[type="text"] {
+  .create_note input[type='text'] {
     margin-bottom: 9px; }
   .create_note textarea {
     height: 250px; }
+  .create_note input[type='file'] {
+    height: 30px;
+    opacity: 1;
+    position: relative;
+    z-index: 0;
+  }
   .create_note .c_n_bottom {
     margin-top: 1px; }
     .create_note .c_n_bottom input[type='submit'] {

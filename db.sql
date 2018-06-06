@@ -8,6 +8,7 @@
 -- PHP Version: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 SET time_zone = "+00:00";
 
 
@@ -83,6 +84,7 @@ CREATE TABLE `posts` (
   `username` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
+  `img_id` text DEFAULT '',
   `post_created` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -90,12 +92,13 @@ CREATE TABLE `posts` (
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`post_id`, `user`, `username`, `title`, `content`, `post_created`) VALUES
-(2, 7, 'ghalib', 'By ghalib..', 'content of it..', '1507144326258'),
-(3, 7, 'ghalib', 'jk', 'kkkkk', '1507144370200'),
-(4, 8, 'vuejs', 'About me..', 'A progressive, incrementally-adoptable JavaScript framework for building UI on the web.', '1507214449179'),
-(5, 9, 'golang', 'Golang''s First Title..', 'I am a very awesome programming language. One of takkar''s favourite programming languages!!', '1507214633931'),
-(6, 5, 'takkar', 'Lorem Ipsum By Takkar..', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '1507214793412');
+INSERT INTO `posts` (`post_id`, `user`, `username`, `title`, `content`, `img_id`, `post_created`) VALUES
+(2, 7, 'ghalib', 'By ghalib..', 'content of it..', '', '1507144326258'),
+(3, 7, 'ghalib', 'jk', 'kkkkk', '', '1507144370200'),
+(7, 10, 'yash', 'test title', 'test content', '066a37eb-a6c3-4c19-8445-5d6eaf6eab2b', '1507144370300'),
+(4, 8, 'vuejs', 'About me..', 'A progressive, incrementally-adoptable JavaScript framework for building UI on the web.', '', '1507214449179'),
+(5, 9, 'golang', 'Golang''s First Title..', 'I am a very awesome programming language. One of takkar''s favourite programming languages!!', '', '1507214633931'),
+(6, 5, 'takkar', 'Lorem Ipsum By Takkar..', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '', '1507214793412');
 
 -- --------------------------------------------------------
 
