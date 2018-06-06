@@ -14,12 +14,7 @@
       </div>
       <div id='content' class='note_content'>
         <span>{{ post.content | slice }}</span>
-
-        {{ post.img_id }}
-
-        {{ photoSrc }}
-
-        <img v-if="hasPhoto" :src="photoSrc" />
+        <img v-if="hasPhoto" class='note_photo' :src="photoSrc" />
       </div>
     </div>
   </router-link>
@@ -28,64 +23,38 @@
 
 <script>
 import db from '../firebaseInit'
-import AsyncComputed from 'vue-async-computed'
-
-// Vue.use(AsyncComputed)
 
 export default {
   data () {
     return {
       imgSrc: `/users/${this.post.user}/avatar.jpg`,
+      photoSrc: '',
     }
   },
 
   computed: {
     hasPhoto: function () {
       return this.post.img_id != ''
-    },
-    photoSrc: async function () {
-      await db.ref().child('images/' + this.post.img_id).getDownloadURL().then(
-        function (url) {
-          console.log(url);
-          return url;
-        }
-      )
     }
   },
 
-  asyncComputed: {
-    photoSrc: async function () {
-      db.ref().child('images/' + this.post.img_id).getDownloadURL().then(
-        function (url) {
-          console.log(url);
-          return url;
-        }
-      )
+  created: function () {
+    var vm = this;
+
+    if(this.hasPhoto){
+      db.ref().child('images/' + this.post.img_id)
+      .getDownloadURL().then(function(url){
+         vm.photoSrc = url;
+      })
     }
-  },
-
-  methods: {
-
   },
 
   props: {
     post: {
       type: Object,
       required: true
-    }
+    },
   }
 }
-
-
-// if(document.getElementById("image_id").textContent != '')
-//   loadPhoto(document.getElementById("image_id").textContent);
-
-// function loadPhoto (img_id) {
-//   db.ref().child('images/' + imgId).getDownloadURL().then(function(url) {
-//     var image = document.createElement("img");
-//     image.setAttribute("src", url);
-//     document.getElementById('content').appendChild(image);
-//   }
-// },
 
 </script>
