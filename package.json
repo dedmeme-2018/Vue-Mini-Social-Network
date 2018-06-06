@@ -8,7 +8,6 @@
     "dev": "webpack -d --watch",
     "build": "webpack -p",
     "test": "jest",
-    
     "testCoverage": "jest --coverage"
   },
   "repository": {
