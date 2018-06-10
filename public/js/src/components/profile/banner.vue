@@ -42,13 +42,9 @@
           <span class='stat_nhg'>Posts</span>
         </div>
         <router-link :to='{ name: "followers", params: { username: user.username } }' class='stat_followers'>
-          <span class='stat_hg'>{{ f.followers.length }}</span>
+          <span class='stat_hg'>{{ f.followers.length + f.followings.length }}</span>
           <span class='stat_nhg'>Friends</span>
         </router-link>
-        <!-- <router-link :to='{ name: "followings", params: { username: user.username } }' class='stat_followings'>
-          <span class='stat_hg'>{{ f.followings.length }}</span>
-          <span class='stat_nhg'>Followings</span>
-        </router-link> -->
         <div class='stat_views stat_disabled '>
           <span class='stat_hg'>{{ f.views }}</span>
           <span class='stat_nhg'>Profile views</span>
