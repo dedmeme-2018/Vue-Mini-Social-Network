@@ -11,7 +11,7 @@
         <router-link :to="{ name: 'create-post', params: { username: user.username } }" class='pri_btn' >New Post</router-link>
         <router-link :to="{ name: 'edit-profile' }" class='pri_btn' >Edit Profile</router-link>
         <router-link :to="{ name: 'confirm-followers' }" class='pri_btn' >Confirm Friend Requests</router-link>
-        <router-link :to="{ name: 'delete-followers' }" class='pri_btn' >Remove Friends</router-link>
+        <!-- <router-link :to="{ name: 'delete-followers' }" class='pri_btn' >Remove Friends</router-link> -->
       </template>
       <template v-else >
         <a v-if='is_following' href='#' class='pri_btn unfollow' @click.prevent='unfollow' >Unfriend</a>
