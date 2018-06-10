@@ -34,17 +34,22 @@ export default {
 
   computed: {
     hasPhoto: function () {
-      return this.post.img_id != ''
+      return this.post.img_id != '' && this.post.img_id !== undefined
     }
   },
 
   created: function () {
     var vm = this;
 
+    console.dir(this);
+
+    console.dir(this.post)
+
     if(this.hasPhoto){
       db.ref().child('images/' + this.post.img_id)
       .getDownloadURL().then(function(url){
          vm.photoSrc = url;
+         console.log(vm.photoSrc);
       })
     }
   },

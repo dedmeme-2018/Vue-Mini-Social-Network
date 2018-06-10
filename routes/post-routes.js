@@ -36,7 +36,7 @@ app.post('/get-posts', async (req, res) => {
 // GET ALL FEEDS
 app.post('/get-feeds', async (req, res) => {
   let feed = await db.query(
-    'SELECT posts.post_id, posts.user, posts.username, posts.title, posts.content, posts.post_created FROM posts, follow_system WHERE follow_system.follow_by = ? AND follow_system.follow_to = posts.user AND follow_system.confirmed = true ORDER BY posts.post_created DESC LIMIT 100',
+    'SELECT posts.post_id, posts.user, posts.username, posts.title, posts.content, posts.img_id, posts.post_created FROM posts, follow_system WHERE follow_system.follow_by = ? AND follow_system.follow_to = posts.user AND follow_system.confirmed = true ORDER BY posts.post_created DESC LIMIT 100',
     [req.session.id]
   ),
     session = req.session.id
@@ -87,18 +87,18 @@ app.post('/valid-post', async (req, res) => {
 
 app.post('/post-details', async (req, res) => {
   let [ post ] = await db.query('SELECT * FROM posts WHERE post_id=? LIMIT 1', [req.body.post]),
-    session = req.session.id,
-    id = post.user
-    if(session!=id){
-      let
-        [{encryptedkey: en_aeskey}] = await db.query('SELECT * FROM encrypted_keys_system WHERE follow_by=? AND follow_to=?',[session,id]),
-        aeskey = decryptAeskey_with_privatekey(req.session.prikey, en_aeskey)
-        post.title = decryptPost_with_aeskey(aeskey, post.title)
-        post.content = decryptPost_with_aeskey(aeskey, post.content)
-    }else{
-      post.title = decryptPost_with_aeskey(req.session.aeskey, post.title)
-      post.content = decryptPost_with_aeskey(req.session.aeskey, post.content)
-    }
+  session = req.session.id,
+  id = post.user
+  if (session != id) {
+    let
+      [{encryptedkey: en_aeskey}] = await db.query('SELECT * FROM encrypted_keys_system WHERE follow_by=? AND follow_to=?',[session,id]),
+      aeskey = decryptAeskey_with_privatekey(req.session.prikey, en_aeskey)
+      post.title = decryptPost_with_aeskey(aeskey, post.title)
+      post.content = decryptPost_with_aeskey(aeskey, post.content)
+  } else {
+    post.title = decryptPost_with_aeskey(req.session.aeskey, post.title)
+    post.content = decryptPost_with_aeskey(req.session.aeskey, post.content)
+  }
   res.json(post)
 })
 
