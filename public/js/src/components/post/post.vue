@@ -41,15 +41,10 @@ export default {
   created: function () {
     var vm = this;
 
-    console.dir(this);
-
-    console.dir(this.post)
-
     if(this.hasPhoto){
       db.ref().child('images/' + this.post.img_id)
       .getDownloadURL().then(function(url){
          vm.photoSrc = url;
-         console.log(vm.photoSrc);
       })
     }
   },
