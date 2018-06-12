@@ -35,6 +35,8 @@
       </div>
     </div>
 
+    <CommentList :post_id='{post.post_id}'/>
+    
     <Overlay
       v-if='deleting'
       type='black'

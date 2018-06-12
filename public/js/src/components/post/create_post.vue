@@ -28,7 +28,7 @@
 import $ from 'jquery'
 import Notify from 'handy-notification'
 import UserMixin from '../../mixins/user-mixin'
-import db from '../firebaseInit'
+import {storage} from '../firebaseInit'
 import uuid from 'uuid'
 
 export default {
@@ -42,7 +42,7 @@ export default {
       let imgId = '', file = document.getElementById('photo').files[0];
       if (file !== undefined){
         imgId = uuid() + '.jpg';
-        await db.ref().child('images/' + imgId).put(file).then(function (snapshot) {
+        await storage.ref().child('images/' + imgId).put(file).then(function (snapshot) {
           console.log('Uploaded a blob or file!')
         });
       }
@@ -52,11 +52,13 @@ export default {
         $http,
         $store: { commit }
       } = this
+
       let { body } = await $http.post('/api/create-post', {
         title: title.value,
         content: content.value,
         img_id: imgId,
       })
+
       Notify({
         value: 'Post Created!!',
         done: () => this.Back()
