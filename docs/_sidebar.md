@@ -11,6 +11,8 @@
     * [Keen UI](./components/keen.md)
     * [About](./components/components.md)
 * Progress
-	* [Features](progress.md)
+	* [Features](features.md)
+    * [Issues - Current](issues_current.md)
+    * [Issues - Past](issues_past.md)
 	
 	

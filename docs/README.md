@@ -86,20 +86,6 @@ After we install dependencies, we set up the MySQL database.
       mysql> SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
     ```
 
-## collapsible markdown?
-
-<details><summary>CLICK ME</summary>
-<p>
-
-yes, even hidden code blocks!
-
-```python
-print("hello world!")
-```
-
-</p>
-</details>
-
 ### Development Guidelines
 - Create a branch for each new feature (never push to master)
 - Have reasonable comments in your code
