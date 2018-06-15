@@ -19,6 +19,7 @@
         <span class='v_n_title' :contenteditable='editing' spellCheck='false'>{{ post.title }}</span>
         <span class='v_n_content' :contenteditable='editing' spellCheck='false'>{{ post.content }}</span>
         <img v-if="hasPhoto" class='v_n_photo' :src="photoSrc" />
+        </br>
       </div>
       <div class='v_n_bottom modal_bottom'>
         <div class="v_n_int">
@@ -31,12 +32,14 @@
           <a v-if='!editing' href='#' class='v_n_edit sec_btn' @click.prevent='_toggle("editing")'>Edit Post</a>
           <a href='#' class='v_n_delete sec_btn' :class='{sec_btn_disabled: editing}' @click.prevent='_toggle("deleting")'>Delete Post</a>
         </template>
-        <a href='#' class='v_n_cancel pri_btn' :class='{a_disabled: editing}' @click.prevent='Back' >Done</a>
+
 
         <CommentList />
 
         <ui-textbox placeholder="Add a comment" v-model="user_comment"></ui-textbox>
         <ui-button color="green" type="secondary" v-on:click="postComment">Post Comment</ui-button>
+
+        <a href='#' class='v_n_cancel pri_btn' :class='{a_disabled: editing}' @click.prevent='Back' >Done</a>
       </div>
     </div>
 

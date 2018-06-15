@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="comment_wrapper">
     <Comment v-for="comment in comments" :key="comment.data().timestamp" v-bind:comment="comment" ></Comment>
   </div>
 </template>
@@ -65,3 +65,13 @@ export default {
   }
 }
 </script>
+
+<style>
+    #comment_wrapper{
+        /* border:solid black 1px; */
+        margin-bottom:15px;
+        padding-bottom:15px;
+        max-height: 35vh;
+        overflow-y: scroll;
+    }
+</style>
