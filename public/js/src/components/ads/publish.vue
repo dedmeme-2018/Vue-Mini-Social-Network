@@ -95,7 +95,7 @@ email<template>
 <script>
 import Notify from 'handy-notification'
 import $ from 'jquery'
-import db from '../firebaseInit'
+import {db, storage} from '../firebaseInit'
 import uuid from 'uuid'
 
 export default {
@@ -129,8 +129,8 @@ export default {
           } = this;
         if (file !== undefined){
           imgId = uuid() + '.jpg';
-          await db.ref().child('images/' + imgId).put(file).then(function (snapshot) {
-            db.ref().child('images/' + imgId).getDownloadURL().then(function(url){
+          await storage.ref().child('images/' + imgId).put(file).then(function (snapshot) {
+            storage.ref().child('images/' + imgId).getDownloadURL().then(function(url){
               $http.post('/api/submitAdRequest', {
                 name: name,
                 company: company,
