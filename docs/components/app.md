@@ -1,18 +1,18 @@
-# feeds.vue
+# app
 
-## Methods
-resetAlerts
 
 ## Usage
 ```javascript
-import {Feeds} from 'feeds';
+import {App} from 'app';
 ```
 
 
 ## Description
-- A wrapper component to contain the feed cards.
-- This component renders posts
-- This component is rendered from home.vue
+- This is the main wrapper component that contains the views for the app itself
+- NOTE: This is only rendered after someone logs in. Previous to logging in, no Vue components are rendered.  
+- A wrapper component to contain the app’s components.
+- This component renders header.vue and the router for the main pages
+
 
 ## Code
 public/js/src/components/home/feeds.vue

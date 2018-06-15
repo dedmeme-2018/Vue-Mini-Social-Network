@@ -1,4 +1,4 @@
-# feeds.vue
+# feeds
 
 ## Methods
 resetAlerts

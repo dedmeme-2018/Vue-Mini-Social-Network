@@ -1,3 +1,3 @@
 # Component Documentation
 
-This section will detail our app components including the libraries we used and code we have written. 
+This section will detail our components with methods, properties, and related usage information. 

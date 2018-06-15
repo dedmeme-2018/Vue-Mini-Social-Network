@@ -6,8 +6,11 @@
 	* [Backend and Encryption](./design/backend.md)
 	* [UI](./design/ui-deploy.md)
     * [UI Mockups](./design/ui-mocks.md)
-* Components	
+* Components
+    * [app](./components/app.md)
 	* [feeds](./components/feeds.md)
+    * [header](./components/header.md)
+    * [home](./components/home.md)
     * [Keen UI](./components/keen.md)
     * [About](./components/components.md)
 * Progress
