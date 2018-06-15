@@ -2,7 +2,7 @@
 
   <div v-if='is_on' class='modal_items fer_items'>
     <div class='modal_it_img'>
-      <img :src='imgSrc' />
+      <Avatar :AvatarID='avatarid'/>
     </div>
     <div class='modal_it_content'>
       <div class='modal_it_info'>
@@ -26,6 +26,7 @@
 <script>
 import moduleMixin from '../../mixins/module-mixin'
 import { follow, unfollow, isFollowing, isPending } from '../../utils/functions.js'
+import Avatar from '../others/avatar.vue'
 
 export default {
   mixins: [moduleMixin],
@@ -35,9 +36,12 @@ export default {
       required: true
     }
   },
+  components: {
+    'Avatar': Avatar
+  },
   data(){
     return {
-      imgSrc: `/users/${this.following.follow_to}/avatar.jpg`,
+      avatarid: this.following.follow_to,
       link: {
         name: "profile",
         params: { username: this.following.follow_to_username }

@@ -2,7 +2,7 @@
 
   <div class='explores_list'>
     <div class='exl_main'>
-      <img :src='imgSrc' />
+      <Avatar :AvatarID='avatarid'/>
       <div class='exl_content'>
         <router-link :to='{ name: "profile", params: { username: exp.username } }' class='exl_username'>{{ exp.username }}</router-link>
         <div class='exl_desc'>
@@ -22,6 +22,7 @@
 
 <script>
 import * as fn from '../../utils/functions'
+import Avatar from '../others/avatar.vue'
 
 export default {
   props: {
@@ -30,10 +31,13 @@ export default {
       required: true
     }
   },
+  components: {
+    'Avatar': Avatar
+  },
   data(){
     return {
-      imgSrc: `/users/${this.exp.id}/avatar.jpg`,
       is_pending: false,
+      avatarid: this.exp.id,
       no_of_followers: 0
     }
   },

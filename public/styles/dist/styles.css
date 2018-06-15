@@ -314,6 +314,7 @@ textarea {
   color: #3d464d;
   outline: none;
   padding: 5px 5px;
+  width: 98%;
 }
 
 input[type="submit"]::-moz-focus-inner,
