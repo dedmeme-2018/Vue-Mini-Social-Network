@@ -19,12 +19,7 @@ export default {
   components: {
     'Comment': Comment
   },
-  props: {
-    post: {
-      type: Object
-    }
 
-  },
   created: async function() {
     let {
       $route: { params: { post } }
@@ -35,10 +30,13 @@ export default {
     let commentsRef = db.collection("comments").doc(post.toString()).collection("commentList");
     var that = this;
 
+    // firebase query
     commentsRef.get().then(function(doc) {
       console.log (doc)
       if (doc.size > 0) {
         let comments = doc.docs;
+
+        // sort by time
         comments.sort(function (a,b){
           return a.data().timestamp - b.data().timestamp
         })
@@ -49,6 +47,20 @@ export default {
       }
     }).catch(function(error) {
       console.log("Error getting document:", error);
+    });
+
+
+    commentsRef.onSnapshot(function(doc) {
+      if (doc.size > 0) {
+        let comments = doc.docs;
+
+        // sort by time
+        comments.sort(function (a,b){
+          return a.data().timestamp - b.data().timestamp
+        })
+
+        that.comments = comments
+      }
     });
   }
 }

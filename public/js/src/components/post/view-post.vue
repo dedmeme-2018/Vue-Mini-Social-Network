@@ -107,6 +107,7 @@ export default {
     },
     postComment() {
       console.log ("Posting comment " + this.user_comment + " " + this.post.post_id);
+      var that = this;
 
       if (this.user_comment.length > 0) {
         db.collection("comments").doc(this.post.post_id.toString()).collection("commentList").add({
@@ -115,6 +116,10 @@ export default {
           timestamp: Date.now()
         })
         .then(function() {
+          that.user_comment = ""
+          Notify({
+            value: 'Comment successfully sent!',
+          })
           console.log("Document successfully written!");
         })
         .catch(function(error) {
