@@ -4,9 +4,6 @@
     <div class='aligner'>
       <div class='user_banner' padding='10px'>
         <h2> Your Data Page </h2>
-        <div class='user_bio'>
-          This is all the information you have posted throughout SpeakEasy in one simple place. <br/> Here you can edit or delete your information as you see fit.
-        </div>
         <div class='profile_img_div'>
           <img :src='imgSrc' alt='Your Data Page' >
         </div>
@@ -15,10 +12,17 @@
           <span class='user_no_notes'>{{ user.email }}</span>
         </div>
       </div>
+
+      </br>
+
+      <ui-alert style="font-size: 16px;" @dismiss="showAlert1 = false" v-show="showAlert1">
+          This is all the information you have posted throughout SpeakEasy in one simple place. <br/> Here you can edit or delete your information as you see fit.
+      </ui-alert>
+
       <div class='notes'>
         <template v-if='posts.length > 0' >
-          <template v-for='post in posts' >
-            <Post :key='post.post_id' :post='post' />
+          <template v-for='dataPost in posts' >
+            <dataPost :key='dataPost.post_id' :post='dataPost' />
           </template>
           <End mssg="Back to Top"></End>
         </template>
@@ -34,6 +38,7 @@
 <script>
 import userMixin from '../../mixins/user-mixin'
 import moduleMixin from '../../mixins/module-mixin'
+import dataPost from '../data_post/data_post.vue'
 import * as fn from '../../utils/functions'
 
 export default {
@@ -43,8 +48,14 @@ export default {
   ],
   data(){
     return {
-      username: this.$route.params.username
-    }
+      username: this.$route.params.username,
+      showAlert1: true,
+    };
+  },
+  methods: {
+      resetAlerts() {
+          this.showAlert1 = true;
+      }
   },
   watch: {
     '$route' (to, from) {
@@ -61,6 +72,9 @@ export default {
     posts(){
         return this.p.posts
     }
+  },
+  components: {
+    'dataPost': dataPost,
   }
 }
 </script>

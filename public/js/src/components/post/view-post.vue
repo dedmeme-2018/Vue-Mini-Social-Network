@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <Overlay type='colored' />
+    <Overlay type='white' />
 
     <div class='view_note modal'>
       <div class='v_n_header modal_header'>
@@ -16,9 +16,9 @@
             <span class='v_n_time'>{{ post.post_created | timeAgo }}</span>
           </div>
         </div>
-        <span
-        class='v_n_title' :contenteditable='editing' spellCheck='false'>{{ post.title }}</span>
+        <span class='v_n_title' :contenteditable='editing' spellCheck='false'>{{ post.title }}</span>
         <span class='v_n_content' :contenteditable='editing' spellCheck='false'>{{ post.content }}</span>
+        <img v-if="hasPhoto" class='v_n_photo' :src="photoSrc" />
       </div>
       <div class='v_n_bottom modal_bottom'>
         <div class="v_n_int">
@@ -34,7 +34,7 @@
         <a href='#' class='v_n_cancel pri_btn' :class='{a_disabled: editing}' @click.prevent='Back' >Done</a>
 
         <CommentList />
-        
+
         <ui-textbox placeholder="Add a comment" v-model="user_comment"></ui-textbox>
         <ui-button color="green" type="secondary" v-on:click="postComment">Post Comment</ui-button>
       </div>
@@ -83,18 +83,22 @@ export default {
       deleting: false,
       editing: false,
       liked: false,
-      user_comment: ""
+      photoSrc: '',
+      user_comment:''
     }
   },
   components: {
     'CommentList': CommentList
   },
   computed: {
-    imgSrc(){
+    imgSrc () {
       return `/users/${this.post.user}/avatar.jpg`
     },
-    likes_len(){
+    likes_len () {
       return this.pi.likes.length
+    },
+    hasPhoto: function () {
+      return this.post.img_id != '' && this.post.img_id !== undefined
     }
   },
   methods: {
@@ -185,6 +189,15 @@ export default {
     this.post = pd
     this.liked = liked
     dispatch('getLikes', post)
+
+    var vm = this;
+
+    if(this.hasPhoto){
+      db.ref().child('images/' + this.post.img_id)
+      .getDownloadURL().then(function(url){
+         vm.photoSrc = url;
+      })
+    }
   }
 }
 </script>
