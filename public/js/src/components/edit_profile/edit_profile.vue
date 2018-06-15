@@ -2,7 +2,7 @@
   <div class='edit edit_profile'>
 
     <div class='edit_info'>
-      <img class='edit_img' :src='imgSrc' alt='Your avatar' />
+      <Avatar class='edit_image' :AvatarID='user.id'/>
       <span>@{{ user.username }}</span>
     </div>
     <div class='eu_div'>
@@ -35,9 +35,14 @@
 import $ from 'jquery'
 import Notify from 'handy-notification'
 import userMixin from '../../mixins/user-mixin'
+import Avatar from '../others/avatar.vue'
+import db from '../firebaseInit'
 
 export default {
   mixins: [userMixin],
+  components: {
+    'Avatar': Avatar
+  },
   methods: {
     editProfile: async function(){
       let
@@ -88,22 +93,14 @@ export default {
         .addClass('sec_btn_disabled')
 
       form.append('avatar', file)
-
-      $.ajax({
-        url: '/api/change-avatar',
-        method: 'POST',
-        processData: false,
-        contentType: false,
-        data: form,
-        dataType: 'JSON',
-        success: data => {
+      if (file !== undefined){
+        await db.ref().child('avatar/' + this.user.id+".jpg").put(file).then(function (snapshot) {
           Notify({
-            value: data.mssg,
+            value: "Avatar changed!",
             done: () => location.reload()
           })
-        }
-      })
-
+        });
+      }
     }
   },
   created(){

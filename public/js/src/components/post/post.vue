@@ -3,7 +3,7 @@
   <router-link :to="{ name: 'view-post', params: { post: post.post_id } }" >
     <div class='note'>
       <div class='note_header common_header'>
-        <img :src='imgSrc' alt='Your profile!!' />
+        <Avatar :AvatarID='avatarid'/>
         <div class='note_h_left'>
           <span class='note_username'>{{ post.username }}</span>
           <span class='note_time'>{{ post.post_created | timeAgo }}</span>
@@ -22,12 +22,13 @@
 </template>
 
 <script>
+import Avatar from '../others/avatar.vue'
 import {db, storage} from '../firebaseInit'
 
 export default {
   data () {
     return {
-      imgSrc: `/users/${this.post.user}/avatar.jpg`,
+      avatarid: this.post.user,
       photoSrc: '',
     }
   },
@@ -37,7 +38,9 @@ export default {
       return this.post.img_id != '' && this.post.img_id !== undefined
     }
   },
-
+  components: {
+    'Avatar': Avatar
+  },
   created: function () {
     var vm = this;
 

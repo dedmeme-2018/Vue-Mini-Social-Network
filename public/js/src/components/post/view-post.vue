@@ -10,7 +10,7 @@
       </div>
       <div class='v_n_middle modal_middle'>
         <div class='v_n_info'>
-          <img :src='imgSrc' alt='' />
+          <Avatar :AvatarID='this.post.user'/>
           <div class='v_n_left'>
             <router-link :to='{ name: "profile", params: { username: post.username } }' class='v_n_username'>{{ post.username }}</router-link>
             <span class='v_n_time'>{{ post.post_created | timeAgo }}</span>
@@ -19,7 +19,7 @@
         <span class='v_n_title' :contenteditable='editing' spellCheck='false'>{{ post.title }}</span>
         <span class='v_n_content' :contenteditable='editing' spellCheck='false'>{{ post.content }}</span>
         <img v-if="hasPhoto" class='v_n_photo' :src="photoSrc" />
-        </br>
+        <br>
       </div>
       <div class='v_n_bottom modal_bottom'>
         <div class="v_n_int">
@@ -71,6 +71,8 @@ import $ from 'jquery'
 import Notify from 'handy-notification'
 import UserMixin from '../../mixins/user-mixin'
 import moduleMixin from '../../mixins/module-mixin'
+import Avatar from '../others/avatar.vue'
+
 import CommentList from '../comments/comment_list.vue'
 import {db, storage} from "../firebaseInit"
 
@@ -91,6 +93,7 @@ export default {
     }
   },
   components: {
+    'Avatar': Avatar,
     'CommentList': CommentList
   },
   computed: {

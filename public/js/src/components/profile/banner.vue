@@ -3,7 +3,7 @@
   <div class='user_banner'>
 
     <div class='profile_img_div'>
-      <img :src='imgSrc' alt='Your Profile!!' >
+       <Avatar :AvatarID='user.id'/>
     </div>
     <div class='user_info'>
       <router-link :to='{ name: "profile", params: { username: user.username } }' class='user_main_link'>{{ user.username }}</router-link>
@@ -54,6 +54,7 @@
 import userMixin from '../../mixins/user-mixin'
 import moduleMixin from '../../mixins/module-mixin'
 import * as fn from '../../utils/functions'
+import Avatar from '../others/avatar.vue'
 
 export default {
   mixins: [
@@ -63,8 +64,11 @@ export default {
   data(){
     return {
       is_following: false,
-      is_pending: false
+      is_pending: false,
     }
+  },
+  components: {
+    'Avatar': Avatar
   },
   computed: {
     posts_len(){

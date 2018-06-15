@@ -4,7 +4,7 @@
     <div id="mySidenav" class="sidenav">
       <a  class="closebtn" @click="closeNav()">&times;</a>
       <div style="width:150px;margin:auto;" class='profile_img_div'>
-        <img id="sidenav_img" :src='myImgSrc' alt='Your Profile!!' >
+        <Avatar :AvatarID='session.id'/>
       </div>
       <router-link id="sidebar_profile_name" :to='{ name: "profile", params: { username: session.username } }' class='user_main_link'>
        {{ session.username }}
@@ -35,9 +35,11 @@
     </div>
   </div>
 </template>
+
 <script>
   import userMixin from '../../mixins/user-mixin'
-
+  import Avatar from '../others/avatar.vue'
+  
   export default {
     name: 'Sidebar',
     components: {
@@ -47,7 +49,9 @@
       return {
       }
     },
-
+    components: {
+      'Avatar': Avatar
+    },
     computed: {
     },
 
