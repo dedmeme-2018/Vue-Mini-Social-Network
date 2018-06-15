@@ -34,19 +34,8 @@
       </table>
     </div>
   </div>
-  <div id="premium_wrapper" onClick="noPremium()" style="width: 100vw; height: 100vh; display: none;">
-    <div id="premium_modal" style="
-      width: 450px;
-      height: 550px;
-      background-color: white;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      -webkit-box-shadow: 0px 0px 154px 5px rgba(0,0,0,0.81);
-      -moz-box-shadow: 0px 0px 154px 5px rgba(0,0,0,0.81);
-      box-shadow: 0px 0px 154px 5px rgba(0,0,0,0.81);
-      padding: 20px;">
+  <div id="premium_wrapper" onClick="noPremium()">
+    <div id="premium_modal">
       <center style="margin-bottom: 50px">
         <h1>
           <span class="speakeasy" style="font-size: 2.5em">SpeakEasy</span>
@@ -73,4 +62,23 @@
     document.getElementById('se_hide').style.display = "block";
   }
 </script>
+<style type="text/css">
+  #premium_wrapper {
+    width: 100vw; height: 100vh; display: none;
+  }
+
+  #premium_modal {
+    width: 450px;
+    height: 550px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-box-shadow: 0px 0px 154px 5px rgba(0,0,0,0.81);
+    -moz-box-shadow: 0px 0px 154px 5px rgba(0,0,0,0.81);
+    box-shadow: 0px 0px 154px 5px rgba(0,0,0,0.81);
+    padding: 20px;
+  }
+</style>
 {{> footer }}
