@@ -6,23 +6,35 @@
       <div style="width:150px;margin:auto;" class='profile_img_div'>
         <img id="sidenav_img" :src='myImgSrc' alt='Your Profile!!' >
       </div>
-      <router-link id="sidebar_profile_name" :to='{ name: "profile", params: { username: session.username } }' class='user_main_link'>{{ session.username }}</router-link>
-
-      <router-link to='/' :exact='true' active-class='ha_active' ><ui-icon>home</ui-icon>Home</router-link>
-      <router-link to='/explore' active-class='ha_active' ><ui-icon>public</ui-icon>Explore</router-link>
-      <router-link to='/404' :exact='true' active-class='ha_active' >Home</router-link>
-      <router-link to='/deactivate' active-class='ha_active' ><ui-icon>delete_forever</ui-icon>Deactivate</router-link>
-      <router-link :to="{ name: 'publish', params: { username: session.username }}" active-class="ha_active">SpeakEasy Ads</router-link>
+      <router-link id="sidebar_profile_name" :to='{ name: "profile", params: { username: session.username } }' class='user_main_link'>
+       {{ session.username }}
+      </router-link>
+      <table>
+        <router-link to='/' :exact='true' active-class='ha_active'>
+          <tr>
+            <td><ui-icon>home</ui-icon></td>
+            <td>Home</td>
+          </tr>
+        </router-link>
+        <router-link to='/explore' active-class='ha_active'>
+          <tr>
+            <td><ui-icon>public</ui-icon></td>
+            <td>Explore</td>
+          </tr>
+        </router-link>
+        <router-link to='/deactivate' active-class='ha_active' >
+          <tr>
+            <td><ui-icon>delete_forever</ui-icon></td>
+            <td>Deactivate</td>
+          </tr>
+        </router-link>
+        <router-link :to="{ name: 'publish', params: { username: session.username }}" active-class="ha_active">
+          <tr><td>SpeakEasy Ads</td></tr>
+        </router-link>
+      </table>
     </div>
   </div>
 </template>
-
-<div class='left'>
-      <router-link to='/' :exact='true' active-class='ha_active'><ui-icon>home</ui-icon>Home</router-link>
-      <router-link to='/explore' active-class='ha_active' ><ui-icon>public</ui-icon>Explore</router-link>
-      <router-link to='/deactivate' active-class='ha_active' ><ui-icon>delete_forever</ui-icon>Deactivate</router-link>
-    </div>
-
 <script>
   import userMixin from '../../mixins/user-mixin'
 
