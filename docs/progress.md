@@ -1,6 +1,12 @@
-# Features (Updated 6/5/18)
+# Features (Updated 6/14/18)
 
 ### Implemented:
+**6/14/18 Update**
+- Cleaned up several UI elements
+- Ad Component
+- Premium Subscription Page
+- PWA Conversion
+
 **6/5/18 Update**
 - Encryption Layer
 - Follower Requests and Permissions
@@ -23,8 +29,11 @@
 
 ##### Backend
 - Migration of Backend from MySQL to Firebase
+
+##### Other
+- Testing
  
 ### Remaining:
-- Subscription
+- Subscription Payment Processing
 - Analytics / Admin page
 - Testing Components
