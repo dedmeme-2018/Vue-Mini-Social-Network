@@ -1,5 +1,10 @@
 import firebase from 'firebase'
 import 'firebase/firestore'
 import firebaseConfig from './firebaseConfig'
+
 firebase.initializeApp(firebaseConfig)
-export default firebase.storage()
+
+let db = firebase.firestore()
+let storage = firebase.storage()
+
+export {db, storage}
