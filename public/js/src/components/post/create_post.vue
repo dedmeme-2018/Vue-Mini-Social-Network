@@ -48,7 +48,7 @@
 import $ from 'jquery'
 import Notify from 'handy-notification'
 import UserMixin from '../../mixins/user-mixin'
-import db from '../firebaseInit'
+import {db, storage} from '../firebaseInit'
 import uuid from 'uuid'
 
 export default {
@@ -62,7 +62,7 @@ export default {
             let imgId = '', file = document.getElementById('photo').files[0];
             if (file !== undefined){
                 imgId = uuid() + '.jpg';
-                await db.ref().child('images/' + imgId).put(file).then(function (snapshot) {
+                await storage.ref().child('images/' + imgId).put(file).then(function (snapshot) {
                     console.log('Uploaded a blob or file!')
                 });
             }
