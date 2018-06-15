@@ -7,9 +7,9 @@
 	* [UI](./design/ui-deploy.md)
     * [UI Mockups](./design/ui-mocks.md)
 * Components	
-	* [About](./components/components.md)
-	* [Keen UI](./components/keen.md)
-	* [feeds.vue](./components/feeds.md)
+	* [feeds](./components/feeds.md)
+    * [Keen UI](./components/keen.md)
+    * [About](./components/components.md)
 * Progress
 	* [Features](progress.md)
 	
