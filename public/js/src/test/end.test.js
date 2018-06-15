@@ -12,4 +12,8 @@ describe('End', () => {
   it('has a div', () => {
     expect(wrapper.contains('div')).toBe(true)
   })
+
+  it('has a span', () => {
+    expect(wrapper.contains('span')).toBe(true)
+  })
 })
