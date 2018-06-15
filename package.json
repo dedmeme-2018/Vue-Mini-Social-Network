@@ -8,7 +8,8 @@
     "dev": "webpack -d --watch",
     "build": "eslint routes public/js/src/ --fix && webpack -p",
     "test": "jest",
-    "testCoverage": "jest --coverage"
+    "testCoverage": "jest --coverage",
+    "build-components": "node ./node_modules/vue-styleguide-generator/"
   },
   "repository": {
     "type": "git",
@@ -70,6 +71,7 @@
     "jest": "^23.1.0",
     "vue": "^2.5.16",
     "vue-loader": "^14.2.3",
+    "vue-styleguide-generator": "^0.9.18",
     "vue-template-compiler": "^2.5.16",
     "webpack-cli": "^3.0.0"
   },
