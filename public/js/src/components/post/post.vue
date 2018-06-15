@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import {storage, db} from '../firebaseInit'
+import {db, storage} from '../firebaseInit'
 
 export default {
   data () {

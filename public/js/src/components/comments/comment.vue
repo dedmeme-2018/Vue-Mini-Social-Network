@@ -1,9 +1,9 @@
 <template>
 
   <div class='comment'>
-    <span class='comment_name'>{{user}}</span>
-    <span class='comment_content'>{{content}}</span>
-    <span class='comment_time'>{{timestamp}}</span>
+    <div class='comment_name'>{{comment.data().user}}</div>
+    <div class='comment_content'>{{comment.data().content}}</div>
+    <div class='comment_time'>{{this.date.toLocaleDateString("en-us")}}</div>
   </div>
 
 </template>
@@ -11,20 +11,17 @@
 <script>
 
   export default {
-    props: {
-      content: {
-        type: String,
-        required: true
-      },
-      user: {
-        type: String,
-        required: true
+    data() {
+      return {
+        date: new Date(this.comment.data().timestamp)
       }
-      timestamp: {
-        type: String,
+    },
+    props: {
+      comment: {
+        type: Object,
         required: true
       }
     }
   }
-  
+
 </script>

@@ -113,7 +113,6 @@ export default {
     },
     methods: {
       createPost: async function() {
-        console.log (this);
         let
           {
             name,

@@ -28,7 +28,7 @@
 import $ from 'jquery'
 import Notify from 'handy-notification'
 import UserMixin from '../../mixins/user-mixin'
-import {storage} from '../firebaseInit'
+import {db, storage} from '../firebaseInit'
 import uuid from 'uuid'
 
 export default {

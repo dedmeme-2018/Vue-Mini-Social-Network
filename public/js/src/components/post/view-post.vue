@@ -17,7 +17,7 @@
           </div>
         </div>
         <span
-          class='v_n_title' :contenteditable='editing' spellCheck='false'>{{ post.title }}</span>
+        class='v_n_title' :contenteditable='editing' spellCheck='false'>{{ post.title }}</span>
         <span class='v_n_content' :contenteditable='editing' spellCheck='false'>{{ post.content }}</span>
       </div>
       <div class='v_n_bottom modal_bottom'>
@@ -32,23 +32,27 @@
           <a href='#' class='v_n_delete sec_btn' :class='{sec_btn_disabled: editing}' @click.prevent='_toggle("deleting")'>Delete Post</a>
         </template>
         <a href='#' class='v_n_cancel pri_btn' :class='{a_disabled: editing}' @click.prevent='Back' >Done</a>
+
+        <CommentList />
+        
+        <ui-textbox placeholder="Add a comment" v-model="user_comment"></ui-textbox>
+        <ui-button color="green" type="secondary" v-on:click="postComment">Post Comment</ui-button>
       </div>
     </div>
 
-    <CommentList :post_id='{post.post_id}'/>
-    
+
     <Overlay
-      v-if='deleting'
-      type='black'
+    v-if='deleting'
+    type='black'
     />
 
     <Prompt
-      v-if='deleting'
-      title='Delete post'
-      content="This post will be deleted. There's no undo so you won't be able to find it."
-      actionText='Delete'
-      @back='_toggle("deleting")'
-      @action='deletePost'
+    v-if='deleting'
+    title='Delete post'
+    content="This post will be deleted. There's no undo so you won't be able to find it."
+    actionText='Delete'
+    @back='_toggle("deleting")'
+    @action='deletePost'
     />
 
     <router-view name='overlay' ></router-view>
@@ -64,6 +68,8 @@ import $ from 'jquery'
 import Notify from 'handy-notification'
 import UserMixin from '../../mixins/user-mixin'
 import moduleMixin from '../../mixins/module-mixin'
+import CommentList from '../comments/comment_list.vue'
+import {db, storage} from "../firebaseInit"
 
 export default {
   mixins: [
@@ -73,10 +79,15 @@ export default {
   data(){
     return {
       post: {},
+      post_id: undefined,
       deleting: false,
       editing: false,
-      liked: false
+      liked: false,
+      user_comment: ""
     }
+  },
+  components: {
+    'CommentList': CommentList
   },
   computed: {
     imgSrc(){
@@ -90,18 +101,36 @@ export default {
     Back(){
       history.back()
     },
+    postComment() {
+      console.log ("Posting comment " + this.user_comment + " " + this.post.post_id);
+
+      if (this.user_comment.length > 0) {
+        db.collection("comments").doc(this.post.post_id.toString()).collection("commentList").add({
+          content: this.user_comment,
+          user: this.session.username,
+          timestamp: Date.now()
+        })
+        .then(function() {
+          console.log("Document successfully written!");
+        })
+        .catch(function(error) {
+          console.error("Error writing document: ", error);
+        });
+      }
+
+    },
     _toggle(what) {
       this[what] = !this[what]
       what == 'editing' ? $('.v_n_edit').blur() : null
     },
     deletePost: async function() {
       let
-        {
-          $route: { params: { post } },
-          $http,
-          $store: { commit }
-        } = this,
-        { body: { mssg } } = await $http.post('/api/delete-post', { post })
+      {
+        $route: { params: { post } },
+        $http,
+        $store: { commit }
+      } = this,
+      { body: { mssg } } = await $http.post('/api/delete-post', { post })
 
       Notify({
         value: mssg,
@@ -111,29 +140,29 @@ export default {
     },
     editPost: async function(){
       let
-        { $route: { params }, $http, $store: { commit } } = this,
-        update = {
-          post: params.post,
-          title: $('.v_n_title').text(),
-          content: $('.v_n_content').text()
-        },
-        { body: { mssg } } = await $http.post('/api/edit-post', update)
+      { $route: { params }, $http, $store: { commit } } = this,
+      update = {
+        post: params.post,
+        title: $('.v_n_title').text(),
+        content: $('.v_n_content').text()
+      },
+      { body: { mssg } } = await $http.post('/api/edit-post', update)
 
       Notify({ value: mssg })
       this._toggle('editing')
     },
     like: async function(){
       let
-        { $route: { params }, $http, $store } = this,
-        { body } = await $http.post('/api/like', { post: params.post })
+      { $route: { params }, $http, $store } = this,
+      { body } = await $http.post('/api/like', { post: params.post })
       $store.commit('LIKED', body)
       this._toggle('liked')
       Notify({ value: 'Post Liked!!' })
     },
     unlike: async function(){
       let
-        { $route: { params }, $http, $store } = this,
-        { body } = await $http.post('/api/unlike', { post: params.post })
+      { $route: { params }, $http, $store } = this,
+      { body } = await $http.post('/api/unlike', { post: params.post })
       $store.commit('UNLIKED', params.post)
       this._toggle('liked')
       Notify({ value: 'Post Unliked!!' })
@@ -141,17 +170,18 @@ export default {
   },
   created: async function() {
     let
-      {
-        $http,
-        $route: { params: { post } },
-        $router,
-        $store: { dispatch },
-      } = this,
-      { body: valid } = await $http.post('/api/valid-post', { post }),
-      { body: pd } = await $http.post('/api/post-details', { post }),
-      { body: liked } = await $http.post('/api/liked-or-not', { post })
+    {
+      $http,
+      $route: { params: { post } },
+      $router,
+      $store: { dispatch },
+    } = this,
+    { body: valid } = await $http.post('/api/valid-post', { post }),
+    { body: pd } = await $http.post('/api/post-details', { post }),
+    { body: liked } = await $http.post('/api/liked-or-not', { post })
 
     !valid ? $router.push('/error/post') : null
+    this.post_id = post
     this.post = pd
     this.liked = liked
     dispatch('getLikes', post)
