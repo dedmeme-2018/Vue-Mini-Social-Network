@@ -8,6 +8,7 @@
 import $ from 'jquery'
 
 export default {
+  name: "End",
   props: {
     mssg: {
       default: "   There aren't any more posts in your feed!",
