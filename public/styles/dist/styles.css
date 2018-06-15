@@ -589,7 +589,7 @@ select:focus {
   display: block;
   text-align: right;
   padding: 9px 5px 8px 5px;
-  border-top: 1px solid #eee;
+  /* border-top: 1px solid #eee; */
   margin-top: 0px;
   /* height:60px; */
 }
@@ -632,7 +632,7 @@ select:focus {
   display: block;
   text-align: right;
   padding: 9px 5px 12px 5px;
-  border-top: 1px solid #eee;
+  /* border-top: 1px solid #eee; */
   margin-top: 0px;
 }
 
@@ -1892,13 +1892,12 @@ select:focus {
   padding: 2px;
   text-align: center;
   line-height: 60px;
-  color: white;
+  color: #EEEEEE;
 }
 
 #open_sidebar_button:hover {
   transition: all .2s;
   color: white;
-  /*transform: rotate(180deg);*/
 }
 
 #sidenav_img {

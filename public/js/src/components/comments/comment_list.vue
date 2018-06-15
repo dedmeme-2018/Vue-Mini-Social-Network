@@ -71,7 +71,9 @@ export default {
         /* border:solid black 1px; */
         margin-bottom:15px;
         padding-bottom:15px;
+        margin-top: 15px;
         max-height: 35vh;
         overflow-y: scroll;
+        border-top: solid #EEEEEE 1px;
     }
 </style>

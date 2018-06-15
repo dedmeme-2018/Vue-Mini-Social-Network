@@ -153,6 +153,7 @@
     /* border:solid 1px; */
     font-size: 36px;
     top:-55px;
+    color:grey;
   }
 
   .sidenav .closebtn:hover{
@@ -160,7 +161,6 @@
       color: black;
       background-color: white;
       transition:all .2s;
-      transform: rotate(180deg);
   }
 
   @media screen and (max-height: 450px) {
