@@ -1,6 +1,6 @@
 const
   app = require('express').Router(),
-  db = require('../config/db')
+  db = require('../config/db'),
   forge = require('node-forge'),
   rsa = forge.pki.rsa
 
@@ -27,7 +27,7 @@ app.post('/is-pending', async (req, res) => {
 
 app.post('/accept-pending', async (req, res) => {
   let { session, body } = req,
-  [{publickey:publickey}] = await db.query('SELECT publickey FROM keys_system WHERE user_id=?',[body.user])
+    [{publickey:publickey}] = await db.query('SELECT publickey FROM keys_system WHERE user_id=?',[body.user])
   publickey = forge.pki.publicKeyFromPem(JSON.parse(publickey))
   let en_key = forge.util.bytesToHex(publickey.encrypt(session.aeskey)),
     obj = {
