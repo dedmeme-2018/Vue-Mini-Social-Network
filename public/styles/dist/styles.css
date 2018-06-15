@@ -741,6 +741,11 @@ select:focus {
   margin-top: 70px;
 }
 
+.data_post_icons span {
+  color: #1b2733;
+  float: right;
+}
+
 #profileicon {
   border: solid;
   background-image: url('../../../../images/profileicon.png');
