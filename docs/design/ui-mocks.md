@@ -1,4 +1,4 @@
-# UI
+# UI Mocks
 
 We want to focus heavily on the UI for this project. Our goal is to convey a sense of security through look and feel, not just features.
 
