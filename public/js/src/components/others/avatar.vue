@@ -8,7 +8,6 @@ import {db,storage} from '../firebaseInit'
 export default {
     props: {
         AvatarID: {
-            type: Object,
             required: true
         }
     },
