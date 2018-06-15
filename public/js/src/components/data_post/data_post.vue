@@ -2,7 +2,7 @@
 
     <div style="cursor:default;" class='note'>
       <div class='note_header common_header'>
-        <img :src='imgSrc' alt='Your profile!!' />
+        <Avatar :AvatarID='this.post.user'/>
         <div display='inline;' class='note_h_left'>
           <span class='note_username'>{{ post.username }}</span>
           <router-link :to="{ name: 'view-post', params: { post: post.post_id } }" >
@@ -32,13 +32,16 @@
 
 <script>
 import db from '../firebaseInit'
+import Avatar from '../others/avatar.vue'
 export default {
   data(){
     console.log("Hello!");
     return {
-      imgSrc: `/users/${this.post.user}/avatar.jpg`,
       photoSrc: ''
     }
+  },
+  components: {
+    'Avatar': Avatar
   },
   computed: {
     hasPhoto: function () {

@@ -10,7 +10,7 @@
       </div>
       <div class='v_n_middle modal_middle'>
         <div class='v_n_info'>
-          <img :src='imgSrc' alt='' />
+          <Avatar :AvatarID='this.post.user'/>
           <div class='v_n_left'>
             <router-link :to='{ name: "profile", params: { username: post.username } }' class='v_n_username'>{{ post.username }}</router-link>
             <span class='v_n_time'>{{ post.post_created | timeAgo }}</span>
@@ -63,6 +63,7 @@ import Notify from 'handy-notification'
 import UserMixin from '../../mixins/user-mixin'
 import moduleMixin from '../../mixins/module-mixin'
 import db from '../firebaseInit'
+import Avatar from '../others/avatar.vue'
 
 
 export default {
@@ -78,6 +79,9 @@ export default {
       liked: false,
       photoSrc: ''
     }
+  },
+  components: {
+    'Avatar': Avatar
   },
   computed: {
     imgSrc () {

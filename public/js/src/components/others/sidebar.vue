@@ -4,7 +4,7 @@
     <div id="mySidenav" class="sidenav">
       <a  class="closebtn" @click="closeNav()">&times;</a>
       <div style="width:150px;margin:auto;" class='profile_img_div'>
-        <img id="sidenav_img" :src='myImgSrc' alt='Your Profile!!' >
+        <Avatar :AvatarID='session.id'/>
       </div>
       <router-link id="sidebar_profile_name" :to='{ name: "profile", params: { username: session.username } }' class='user_main_link'>
        {{ session.username }}
@@ -35,33 +35,10 @@
     </div>
   </div>
 </template>
-<<<<<<< HEAD
-=======
-<!-- <div class='left'>
-  <table>
-    <router-link to='/' :exact='true' active-class='ha_active'>
-      <tr>
-        <td><ui-icon>home</ui-icon></td>
-        <td>Home</td>
-      </tr>
-    </router-link>
-    <router-link to='/explore' active-class='ha_active'>
-      <tr>
-        <td><ui-icon>public</ui-icon></td>
-        <td>Explore</td>
-      </tr>
-    </router-link>
-    <router-link to='/deactivate' active-class='ha_active' >
-      <tr>
-        <td><ui-icon>delete_forever</ui-icon></td>
-        <td>Deactivate</td>
-      </tr>
-    </router-link>
-  </table>
-</div> -->
->>>>>>> 7928bdfd5c6fc4081c0fa129fe7344c8e9fa1114
+
 <script>
   import userMixin from '../../mixins/user-mixin'
+  import Avatar from '../others/avatar.vue'
   
   export default {
     name: 'Sidebar',
@@ -72,7 +49,9 @@
       return {
       }
     },
-  
+    components: {
+      'Avatar': Avatar
+    },
     computed: {
     },
   
