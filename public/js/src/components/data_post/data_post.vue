@@ -18,14 +18,6 @@
         <span>{{ post.content | slice }}</span>
         <img v-if="hasPhoto" class='note_photo' :src="photoSrc" />
       </div>
-        <Prompt
-          v-if='deleting'
-          title='Delete post'
-          content="This post will be deleted. There's no undo so you won't be able to find it."
-          actionText='Delete'
-          @back='_toggle("deleting")'
-          @action='deletePost'
-        />
     </div>
 
 </template>
@@ -60,28 +52,6 @@ export default {
       type: Object,
       required: true
     }
-  },
-  Back(){
-    history.back()
-  },
-  _toggle(what) {
-    this[what] = !this[what]
-    what == 'editing' ? $('.v_n_edit').blur() : null
-  },
-  deletePost: async function() {
-    let
-      {
-        $route: { params: { post } },
-        $http,
-        $store: { commit }
-      } = this,
-      { body: { mssg } } = await $http.post('/api/delete-post', { post })
-
-    Notify({
-      value: mssg,
-      done: () => this.Back()
-    })
-    commit('DELETE_POST', post)
   }
 }
 </script>
