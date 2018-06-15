@@ -9,5 +9,7 @@ package-lock.json
 public/styles/dist/styles.css.map
 public/tmp/
 public/js/dist/bundle.js
-sendgrid.env
+<<<<<<< HEAD
+=======
 config/firebase.js
+>>>>>>> 0be76e3d4d81fe11e8b31b356c7a707843fdb561

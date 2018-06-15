@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import db from '../firebaseInit'
+import {db, storage} from '../firebaseInit'
 
 export default {
   data () {
@@ -42,7 +42,7 @@ export default {
     var vm = this;
 
     if(this.hasPhoto){
-      db.ref().child('images/' + this.post.img_id)
+      storage.ref().child('images/' + this.post.img_id)
       .getDownloadURL().then(function(url){
          vm.photoSrc = url;
       })
