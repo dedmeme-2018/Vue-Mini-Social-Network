@@ -10,7 +10,6 @@
         <div class='user_info'>
           <router-link :to='{ name: "profile", params: { username: user.username } }' class='user_main_link'>{{ user.username }}</router-link>
           <span class='user_no_notes'>{{ user.email }}</span>
-          <span class='user_no_notes'>{{ user.id }}</span>
         </div>
       </div>
 
