@@ -1,6 +1,9 @@
-# Features (Updated 6/14/18)
+# Features (Updated 6/15/18)
 
 ### Implemented:
+**6/15/18 Update**
+- Commenting on Posts
+
 **6/14/18 Update**
 - Cleaned up several UI elements
 - Ad Component
@@ -21,17 +24,13 @@
 ### In Progress:
 
 ##### Frontend
-- Progressive Web App Conversion
-- Ads
-- Personal Data Page
-- Privacy Settings Page
-- Animations
 
 ##### Backend
 - Migration of Backend from MySQL to Firebase
 
 ##### Other
 - Testing
+- Component Documentation
  
 ### Remaining:
 - Subscription Payment Processing

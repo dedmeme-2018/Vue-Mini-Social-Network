@@ -53,7 +53,11 @@ The explore component allows you to find other users to follow. It is populated 
 
 ![explore](../images/explore_card.png)
 
-### Confirm/Delete Followers
-Confirm Followers            |  Delete Followers
+### Confirm/Delete Friends
+Confirm Friends           |  Delete Friends
 :-------------------------:|:-------------------------:
 ![confirm](../images/confirm_followers.png) |  ![delete](../images/delete_followers.png)
+
+### Data Page
+Here we have all your posts and data readily available for editing or deletion.
+![](../images/datapage.png)
